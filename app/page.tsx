@@ -9,6 +9,7 @@ import {
   CreditCard,
   Gauge,
   Globe,
+  Server,
   ShieldAlert,
   Rocket,
   ShieldCheck,
@@ -46,6 +47,15 @@ const PAYMENTS = [
   { title: "Visa", icon: CreditCard },
   { title: "Mastercard", icon: CreditCard },
   { title: "PayPal", icon: Globe },
+];
+
+const HEALTH_NODES = [
+  { flag: "🇩🇪", name: "WAR", host: "war.ipfobia.com", port: 443, protocol: "WS + TLS" },
+  { flag: "🇩🇪", name: "Luck", host: "luck.ipfobia.com", port: 8080, protocol: "TCP + Reality" },
+  { flag: "🇫🇮", name: "Broken", host: "broken.ipfobia.com", port: 8443, protocol: "WS + TLS" },
+  { flag: "🇫🇮", name: "Broken-R", host: "broken.ipfobia.com", port: 2053, protocol: "TCP + Reality" },
+  { flag: "🇳🇱", name: "Galaxy", host: "galaxy.ipfobia.com", port: 8443, protocol: "WS + TLS" },
+  { flag: "🇳🇱", name: "Galaxy-R", host: "galaxy.ipfobia.com", port: 2053, protocol: "TCP + Reality" },
 ];
 
 export default function Home() {
@@ -156,26 +166,38 @@ export default function Home() {
               </p>
 
               <div className="mb-5 rounded-xl border border-cyan-300/25 bg-slate-900/65 p-3">
-                <div className="mb-2 text-xs text-slate-400">وضعیت اتصال</div>
-                <div className="relative h-14 overflow-hidden rounded-lg bg-slate-950/80 px-2">
-                  <motion.div
-                    animate={{ x: ["100%", "-100%"] }}
-                    transition={{ repeat: Infinity, duration: 2.8, ease: "linear" }}
-                    className="absolute top-2 h-10 w-1/2 bg-gradient-to-r from-cyan-400/0 via-cyan-300 to-cyan-400/0 blur-sm"
-                  />
-                  <svg viewBox="0 0 100 30" className="relative h-full w-full">
-                    <motion.path
-                      d="M 0 22 L 18 22 L 28 22 L 40 22 L 52 8 L 64 20 L 76 10 L 88 16 L 100 6"
-                      fill="none"
-                      stroke="#22d3ee"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      initial={{ pathLength: 0 }}
-                      whileInView={{ pathLength: 1 }}
-                      transition={{ duration: 1.4, ease: "easeOut" }}
+                <div className="mb-2 flex items-center justify-between text-xs text-slate-400">
+                  <span>Health Test زنده نودها</span>
+                  <span className="text-cyan-300">Online</span>
+                </div>
+                <div className="space-y-2">
+                  {HEALTH_NODES.map((node, index) => (
+                    <motion.div
+                      key={`${node.host}-${node.port}`}
+                      initial={{ opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.35, delay: index * 0.05 }}
                       viewport={{ once: true }}
-                    />
-                  </svg>
+                      className="flex items-center justify-between rounded-lg border border-cyan-400/15 bg-slate-950/70 px-3 py-2"
+                    >
+                      <div className="flex items-center gap-2">
+                        <motion.span
+                          animate={{ opacity: [0.35, 1, 0.35], scale: [0.95, 1.1, 0.95] }}
+                          transition={{ repeat: Infinity, duration: 1.8, delay: index * 0.12 }}
+                          className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]"
+                        />
+                        <Server className="h-3.5 w-3.5 text-cyan-300" />
+                        <span className="text-base leading-none">{node.flag}</span>
+                        <span className="text-sm font-bold text-cyan-100">{node.name}</span>
+                      </div>
+                      <div className="text-left">
+                        <div className="text-[11px] text-slate-300">{node.host}</div>
+                        <div className="text-[10px] text-slate-500">
+                          {node.protocol} :{node.port}
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
 
