@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  /** Static HTML/CSS/JS in `out/` for hosts like Hestia (no Node on server). */
+  output: "export",
 };
 
 export default nextConfig;
