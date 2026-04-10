@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import {
   BadgeCheck,
@@ -17,6 +18,18 @@ import {
 } from "lucide-react";
 import { CtaButton } from "@/components/ui/cta-button";
 import { FeatureCard } from "@/components/ui/feature-card";
+
+const StarlinkOrbit3D = dynamic(
+  () => import("@/components/hero/starlink-orbit-3d").then((m) => m.StarlinkOrbit3D),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex h-[min(72vw,22rem)] w-full max-w-md items-center justify-center md:h-[min(36vw,26rem)]">
+        <div className="h-44 w-44 animate-pulse rounded-full border border-cyan-300/25 bg-slate-900/55" />
+      </div>
+    ),
+  },
+);
 
 const FEATURES = [
   {
@@ -115,20 +128,9 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7 }}
-            className="relative mx-auto flex aspect-square w-full max-w-md items-center justify-center rounded-full border border-cyan-300/30 bg-slate-900/40 backdrop-blur"
+            className="relative mx-auto flex w-full max-w-md items-center justify-center rounded-full border border-cyan-300/30 bg-slate-900/40 p-2 backdrop-blur md:p-3"
           >
-            <div className="absolute h-36 w-36 rounded-full bg-cyan-400/45 blur-3xl" />
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ repeat: Infinity, duration: 22, ease: "linear" }}
-              className="absolute h-[88%] w-[88%] rounded-full border border-dashed border-cyan-200/30"
-            />
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-              className="absolute h-[67%] w-[67%] rounded-full border border-violet-300/35"
-            />
-            <Globe className="h-28 w-28 text-cyan-300 md:h-36 md:w-36" />
+            <StarlinkOrbit3D />
           </motion.div>
         </section>
 
