@@ -7,7 +7,9 @@ import {
   CircleDollarSign,
   Clock3,
   CreditCard,
+  Gauge,
   Globe,
+  ShieldAlert,
   Rocket,
   ShieldCheck,
   Zap,
@@ -118,6 +120,70 @@ export default function Home() {
             />
             <Globe className="h-28 w-28 text-cyan-300 md:h-36 md:w-36" />
           </motion.div>
+        </section>
+
+        <section className="relative overflow-hidden rounded-3xl border border-rose-400/30 bg-gradient-to-br from-[#1b0a12] via-[#160d10] to-[#1a1324] p-5 shadow-[0_0_55px_rgba(239,68,68,0.18)] md:p-8">
+          <div className="pointer-events-none absolute -top-20 left-10 h-44 w-44 rounded-full bg-orange-500/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-16 right-8 h-40 w-40 rounded-full bg-rose-500/20 blur-3xl" />
+
+          <h2 className="relative mb-6 text-2xl font-black text-white md:text-3xl">
+            تنها راه عبور از <span className="text-rose-300">خاموشی مطلق دیجیتال</span>
+          </h2>
+
+          <div className="relative grid gap-5 lg:grid-cols-2">
+            <article className="rounded-2xl border border-rose-300/30 bg-black/25 p-5">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-rose-300/35 bg-rose-400/10 px-3 py-1 text-xs font-bold text-rose-200">
+                <ShieldAlert className="h-4 w-4" />
+                وضعیت بحران
+              </div>
+              <p className="text-sm leading-8 text-slate-200 md:text-base">
+                با توجه به قطعی‌های گسترده و بی‌سابقه اسفند ۱۴۰۴ و فروردین ۱۴۰۵ که منجر به قطع
+                ۹۹ درصدی اینترنت بین‌الملل و از کار افتادن کامل VPNهای عادی شد، زیرساخت‌های سنتی
+                دیگر پاسخگو نیستند. محدودیت‌های اخیر مستقیماً روی شبکه زمینی کشور اعمال شده‌اند.
+              </p>
+            </article>
+
+            <article className="rounded-2xl border border-cyan-300/35 bg-[#071326]/75 p-5">
+              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-cyan-300/35 bg-cyan-400/10 px-3 py-1 text-xs font-bold text-cyan-200">
+                <Gauge className="h-4 w-4" />
+                راه‌حل ما
+              </div>
+              <p className="mb-5 text-sm leading-8 text-slate-200 md:text-base">
+                سرویس‌های ما با اتصال مستقیم به زیرساخت‌های ابری ماهواره استارلینک، تمام
+                محدودیت‌های زیرساخت زمینی و ملی (اینترانت) را دور می‌زنند. حتی در شدیدترین حالت
+                قطعی اینترنت، <span className="font-extrabold text-cyan-300">تضمین اتصال</span> و
+                دسترسی آزاد شما در اولویت ماست.
+              </p>
+
+              <div className="mb-5 rounded-xl border border-cyan-300/25 bg-slate-900/65 p-3">
+                <div className="mb-2 text-xs text-slate-400">وضعیت اتصال</div>
+                <div className="relative h-14 overflow-hidden rounded-lg bg-slate-950/80 px-2">
+                  <motion.div
+                    animate={{ x: ["100%", "-100%"] }}
+                    transition={{ repeat: Infinity, duration: 2.8, ease: "linear" }}
+                    className="absolute top-2 h-10 w-1/2 bg-gradient-to-r from-cyan-400/0 via-cyan-300 to-cyan-400/0 blur-sm"
+                  />
+                  <svg viewBox="0 0 100 30" className="relative h-full w-full">
+                    <motion.path
+                      d="M 0 22 L 18 22 L 28 22 L 40 22 L 52 8 L 64 20 L 76 10 L 88 16 L 100 6"
+                      fill="none"
+                      stroke="#22d3ee"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      initial={{ pathLength: 0 }}
+                      whileInView={{ pathLength: 1 }}
+                      transition={{ duration: 1.4, ease: "easeOut" }}
+                      viewport={{ once: true }}
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <CtaButton href="http://t.me/V2free_ibot" className="w-full sm:w-auto">
+                تضمین اتصال - خرید از ربات
+              </CtaButton>
+            </article>
+          </div>
         </section>
 
         <section>
