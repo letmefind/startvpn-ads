@@ -7,6 +7,9 @@ import * as THREE from "three";
 const EARTH_MAP =
   "https://cdn.jsdelivr.net/gh/mrdoob/three.js@r172/examples/textures/planets/earth_atmos_2048.jpg";
 
+/** Same as `body` in `app/layout.tsx` — avoids white showing through WebGL clear. */
+const PAGE_BG = "#050816";
+
 /** Orbital angular speed multiplier (1/3 = one third of default). */
 const SATELLITE_MOTION_SCALE = 1 / 3;
 
@@ -178,15 +181,19 @@ export function StarlinkOrbit3D() {
       <div className="pointer-events-none absolute inset-0 rounded-full bg-cyan-400/25 blur-3xl" />
       <Canvas
         className="relative z-[1] h-full w-full rounded-full"
+        style={{ background: PAGE_BG }}
         camera={{ position: [0, 0.45, 3.35], fov: 40 }}
         gl={{
-          alpha: true,
+          alpha: false,
           antialias: true,
           powerPreference: "high-performance",
         }}
         dpr={[1, 2]}
+        onCreated={({ gl }) => {
+          gl.setClearColor(new THREE.Color(PAGE_BG), 1);
+        }}
       >
-        <color attach="background" args={["transparent"]} />
+        <color attach="background" args={[PAGE_BG]} />
         <ambientLight intensity={0.32} />
         <directionalLight position={[6, 4, 6]} intensity={1.15} color="#f0f9ff" />
         <pointLight position={[-5, -2, 5]} intensity={0.55} color="#38bdf8" />
