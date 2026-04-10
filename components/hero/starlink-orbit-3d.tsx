@@ -7,6 +7,9 @@ import * as THREE from "three";
 const EARTH_MAP =
   "https://cdn.jsdelivr.net/gh/mrdoob/three.js@r172/examples/textures/planets/earth_atmos_2048.jpg";
 
+/** Orbital angular speed multiplier (1/3 = one third of default). */
+const SATELLITE_MOTION_SCALE = 1 / 3;
+
 function EarthFallback() {
   return (
     <mesh>
@@ -135,9 +138,13 @@ function StarlinkConstellation() {
     let i = 0;
 
     for (const it of items) {
-      const phi = it.phase + t * it.speed;
+      const phi = it.phase + t * it.speed * SATELLITE_MOTION_SCALE;
       vec.set(it.r * Math.cos(phi), 0, it.r * Math.sin(phi));
-      euler.set(it.tiltX, it.tiltY + t * 0.028 * (it.idx % 2 === 0 ? 1 : -1), 0);
+      euler.set(
+        it.tiltX,
+        it.tiltY + t * 0.028 * SATELLITE_MOTION_SCALE * (it.idx % 2 === 0 ? 1 : -1),
+        0,
+      );
       vec.applyEuler(euler);
 
       dummy.position.copy(vec);
