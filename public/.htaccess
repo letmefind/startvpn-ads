@@ -1,0 +1,19 @@
+# Next.js static export با trailingSlash: false → فایل‌های knowledge.html در ریشهٔ out.
+# اگر قبلاً پوشهٔ knowledge/ بدون index مانده، قانون اول همان knowledge.html را سرو می‌کند.
+
+DirectoryIndex index.html
+
+Options +FollowSymLinks -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # اگر path.html وجود دارد، همان را بده (حتی اگر پوشهٔ هم‌نام بدون index مانده باشد)
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([^/.]+)/?$ $1.html [L]
+
+  # بقیهٔ مسیرها: حذف اسلش انتهایی
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ /$1 [R=301,L,NE]
+</IfModule>
