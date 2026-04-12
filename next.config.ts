@@ -1,6 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  /**
+   * Webpack file cache can race/corrupt on some setups and leave `.next/server/`
+   * missing (`pages-manifest.json` ENOENT). Disabling production cache avoids that.
+   */
+  webpack: (config, { dev }) => {
+    if (!dev) {
+      config.cache = false;
+    }
+    return config;
+  },
   /** Static HTML/CSS/JS in `out/` for hosts like Hestia (no Node on server). */
   output: "export",
   /**
