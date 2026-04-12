@@ -201,6 +201,9 @@ export default function TermsPage() {
             <Link href="/" className="hover:text-cyan-300">
               صفحه اصلی
             </Link>
+            <Link href="/packages" className="hover:text-cyan-300">
+              پکیج‌ها
+            </Link>
             <Link href="/knowledge" className="hover:text-cyan-300">
               آموزش‌ها
             </Link>
