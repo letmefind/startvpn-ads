@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack && node scripts/verify-static-export.mjs && node scripts/sync-route-index-html.mjs",
+    "preview": "npx --yes serve@14 out -p 4173 --no-clipboard",
+    "preview:py": "python3 -m http.server 4173 --directory out",
     "start": "next start",
     "lint": "eslint"
   },
