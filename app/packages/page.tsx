@@ -110,6 +110,9 @@ export default function PackagesPage() {
             <Link href="/" className="hover:text-cyan-300">
               صفحه اصلی
             </Link>
+            <Link href="/netblocks" className="hover:text-cyan-300">
+              قطعی اینترنت
+            </Link>
             <Link href="/knowledge" className="hover:text-cyan-300">
               آموزش‌ها
             </Link>

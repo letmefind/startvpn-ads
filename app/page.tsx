@@ -288,6 +288,9 @@ export default function Home() {
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-3 px-4 py-6 text-xs text-slate-400 md:flex-row md:px-8 md:text-sm">
           <p>© {new Date().getFullYear()} Starlink VPN. تمامی حقوق محفوظ است.</p>
           <div className="flex items-center gap-4">
+            <Link href="/netblocks" className="hover:text-cyan-300">
+              قطعی اینترنت
+            </Link>
             <Link href="/packages" className="hover:text-cyan-300">
               پکیج‌ها
             </Link>
